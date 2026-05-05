@@ -6,8 +6,8 @@ question_bank = [] # list: bank of questions
 question_number = 0 # int: number of the question
 
 for question in question_data: # question_data -->  list[ dict: {'text', 'answer'}]
-    question_text = question['text'] # str: text
-    question_answer = question['answer'] # str: answer
+    question_text = question['question'] # str: text
+    question_answer = question['correct_answer'] # str: answer
     new_question = Question(q_text = question_text, q_answer = question_answer) # Question object: input -> { q_text, q_answer }
     question_bank.append(new_question)
 
