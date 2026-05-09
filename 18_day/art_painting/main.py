@@ -2,23 +2,12 @@
 # TODO 1: .teleport to move, .pos to show the position,
 
 import turtle as t
+from Movement import Movement
 
-# def x_move(x_movement):
-
-# def y_move(y_movement)
-
-
-tim = t.Turtle()
-y = -300
-x = -300
-tim.teleport(x,y)
-
-for _ in range(10):
-    tim.dot(20)
-    tim.teleport(x,y)
-    x+=50
-y+=50
-
-
+tim = Movement()
 screen = t.Screen()
+screen.colormode(255)
+
+tim.make_paint()
+
 screen.exitonclick()

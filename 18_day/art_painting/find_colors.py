@@ -1,6 +1,6 @@
 import colorgram
 
-colors = colorgram.extract("image.jpg", 6) # extract the colors of the image
+colors = colorgram.extract("image.jpg", 10) # extract the colors of the image
 
 def rgb_tuple_list(list_colors: list):
     rgb_list = [] # list of rgb
