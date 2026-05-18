@@ -16,16 +16,21 @@ class Snake:
         self.head = self.segments[0]  # Facilitador para referenciar a cabeça
 
     def create_snake(self):
-        """Cria o corpo inicial da cobra baseado nas posições iniciais."""
         for position in STARTING_POSITIONS:
-            new_segment = Turtle("square")
-            new_segment.color("white")
-            new_segment.penup()
-            new_segment.goto(position)
-            self.segments.append(new_segment)
+            self.add_segment(position)
+
+
+    def add_segment(self, position):
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(position)
+        self.segments.append(new_segment)
+
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
 
     def move(self):
-        """Faz cada segmento seguir o anterior de trás para frente."""
         # O range começa no último índice, vai até o primeiro (0), diminuindo 1 por vez
         for seg_num in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[seg_num - 1].xcor()
