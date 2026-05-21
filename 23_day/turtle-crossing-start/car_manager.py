@@ -14,11 +14,11 @@ class CarManager(Turtle):
         self.hideturtle()
         self.penup()
         self.goto(400,400)
+        self.speed = 0.2
 
 
     def generate_cars(self):
         random_chance = random.randint(1,6)
-        print(random_chance)
         if random_chance == 5:
             cars = Turtle()
             cars.shape("square")
@@ -32,5 +32,9 @@ class CarManager(Turtle):
         for car in self.car_list:
             car.forward(-STARTING_MOVE_DISTANCE)
 
+    def collision(self):
+        for car in self.car_list:
+            print(car.pos())
 
-
+    def raise_difficulty(self):
+        self.speed *= 0.5
