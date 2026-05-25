@@ -7,28 +7,19 @@
     #Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
         #Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
 
-used_names = []
-# Create a list of the invited names
-with open("Input/Names/invited_names.txt") as list_names:
-    for name in list_names:
-        used_names.append(name)
+PLACEHOLDER = "[name]"
 
-# Replace the "[name]" by the invited names
-def replace_names(list_names):
-    with open("Input/Letters/starting_letter.txt") as file:
-        content = file.read()
-        for names in list_names:
-            replaced_file = content.replace("[name]", names.strip())
-            create_letter(replaced_file,names)
-            print(replaced_file)
-    return replaced_file
+with open("./Input/Names/invited_names.txt") as names_file:
+    names = names_file.readlines()
 
-# Create file ready to send
-def create_letter(new_file,name):
-    with open(f"Output/ReadyToSend/letter_for_{name}", "w") as invitation:
-        invitation.write(new_file)
+with open("./Input/Letters/starting_letter.txt") as letter_file:
+    letter_contents = letter_file.read()
+    for name in names:
+        stripped_name = name.strip()
+        new_letter = letter_contents.replace(PLACEHOLDER, stripped_name)
+        with open(f"./Output/ReadyToSend/letter_for{stripped_name}.docx", mode="w") as completed_letter:
+            completed_letter.write(new_letter)
 
-replace_names(used_names)
 
 
 
