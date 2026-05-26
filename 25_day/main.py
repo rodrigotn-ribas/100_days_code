@@ -1,6 +1,6 @@
 import pandas
 
-# data = pandas.read_csv("weather_data.csv")
+data = pandas.read_csv("weather_data.csv")
 
 # print(type(data))
 # print(type(data["temp"]))
@@ -29,7 +29,7 @@ import pandas
 
 #Get Data in Row
 
-# print(data[data.day == "Monday"])
+print(data[data.day == "Monday"])
 # print(data[data.temp == data.temp.max()])
 #
 
@@ -53,16 +53,16 @@ import pandas
 # primary fur color how many
 
 # TODO 3: print the number of colors
-data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20260525.csv")
-
-gray = len(data[data["Primary Fur Color"] == "Gray"])
-cinnamon = len(data[data["Primary Fur Color"] == "Cinnamon"])
-black = len(data[data["Primary Fur Color"] == "Black"])
-
-color_data = {
-    "Fur Color": ["Gray","Cinnamon","Black"],
-    "Count": [gray, cinnamon, black]
-}
-
-color_data_frame = pandas.DataFrame(color_data)
-color_data_frame.to_csv("color_data_frame.csv")
+# data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20260525.csv")
+#
+# gray = len(data[data["Primary Fur Color"] == "Gray"])
+# cinnamon = len(data[data["Primary Fur Color"] == "Cinnamon"])
+# black = len(data[data["Primary Fur Color"] == "Black"])
+#
+# color_data = {
+#     "Fur Color": ["Gray","Cinnamon","Black"],
+#     "Count": [gray, cinnamon, black]
+# }
+#
+# color_data_frame = pandas.DataFrame(color_data)
+# color_data_frame.to_csv("color_data_frame.csv")
