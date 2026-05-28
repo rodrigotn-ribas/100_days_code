@@ -19,16 +19,15 @@ state_list = []
 check_answers = 0
 
 
-while True:
+while check_answers < 50:
     answer_state = screen.textinput(title=f"{check_answers}/50 States Corrects", prompt="What´s another state´s name?")
     if not states_csv[states_csv.state == answer_state.title()].empty and answer_state not in state_list:
         state_series = states_csv[states_csv.state == answer_state.title()]
         state_x, state_y = state_series.x.values, state_series.y.values
         state_name.write_name((state_x[0],state_y[0]))
-        state_name.write(answer_state)
+        state_name.write(answer_state.title())
         check_answers += 1
         print(answer_state)
         state_list.append(answer_state)
-    print(state_list)
 
 screen.exitonclick()
