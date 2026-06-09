@@ -2,10 +2,11 @@ import turtle
 import pandas as pd
 from state import State
 from clock_project import Clock  # Certifique-se de que o arquivo chama clock_project.py
+from scoreboard import ScoreBoard
 
 screen = turtle.Screen()
 screen.title("Brazil States Game")
-image = "Brazil_Political_Map.png"
+image = "Brazil_Political_Map.gif"
 screen.addshape(image)
 turtle.shape(image)
 
@@ -45,10 +46,13 @@ while check_answers < 27:
         state_name.write(formatted_answer)
 
         # BÔNUS DE TEMPO: Adiciona 10 segundos ao relógio
-        clock.add_bonus_time()
+        # clock.add_bonus_time()
 
         check_answers += 1
         state_list.append(formatted_answer)
+
+if check_answers == 27:
+    scoreboard = ScoreBoard()
 
 # Mantém a tela aberta após o fim do jogo
 screen.mainloop()

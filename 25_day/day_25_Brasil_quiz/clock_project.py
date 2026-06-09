@@ -39,7 +39,7 @@ class Clock:
         if self.time_left > 0 and not self.game_over:
             self.time_left -= 1
             self.update_display()
-            # Chama a si mesmo novamente após 1000 milissegundos (1 segundo)
+            # Chama a si novamente após 1000 milissegundos (1 segundo)
             self.screen.ontimer(self.countdown, 1000)
         elif self.time_left <= 0:
             self.game_over = True
