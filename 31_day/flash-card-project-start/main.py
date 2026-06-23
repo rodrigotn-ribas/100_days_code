@@ -9,12 +9,20 @@ BACKGROUND_COLOR = "#B1DDC6"
 
 data = pd.read_csv("data/hsk1.csv")
 to_learn = data.to_dict(orient="records")
+to_learn_csv = data.to_csv(index=False)
 current_card = {}
 
 
 # ------------------------- Button Function --------------------------- #
+def right_choice():
+    to_learn.remove(current_card)
+
+def wrong_choice():
+    next_card()
+
 def next_card():
-    global current_card
+    global current_card, flip_timer
+    window.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
     canvas.itemconfig(canvas_image, image=card_front_img)
     canvas.itemconfig(card_title, text="Mandarim", fill="black")
@@ -22,6 +30,7 @@ def next_card():
     canvas.itemconfig(card_background, image=card_front_img)
     canvas.itemconfig(pinyin_word_label, text=current_card["Pinyin"], fill="black")
     window.after(3000, func=flip_card)
+
 
 
 def flip_card():
