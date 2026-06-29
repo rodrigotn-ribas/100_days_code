@@ -2,33 +2,34 @@ import random
 from dataclasses import field
 from pydoc import text
 from tkinter import *
+
+import pandas
 import pandas as pd
 import time
 
 BACKGROUND_COLOR = "#B1DDC6"
-
-data = pd.read_csv("data/hsk1.csv")
-to_learn = data.to_dict(orient="records")
-to_learn_csv = data.to_csv(index=False)
 current_card = {}
+to_learn = {}
+
+try:
+    data = pd.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("data/hsk1.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
+
 
 
 # ------------------------- Button Function --------------------------- #
-def right_choice():
-    to_learn.remove(current_card)
-
-def wrong_choice():
-    next_card()
-
 def next_card():
     global current_card, flip_timer
     window.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
-    canvas.itemconfig(canvas_image, image=card_front_img)
     canvas.itemconfig(card_title, text="Mandarim", fill="black")
     canvas.itemconfig(card_word, text=current_card["Mandarim"], fill="black")
-    canvas.itemconfig(card_background, image=card_front_img)
     canvas.itemconfig(pinyin_word_label, text=current_card["Pinyin"], fill="black")
+    canvas.itemconfig(card_background, image=card_front_img)
     window.after(3000, func=flip_card)
 
 
@@ -38,6 +39,13 @@ def flip_card():
     canvas.itemconfig(card_title, text="English", fill="white")
     canvas.itemconfig(card_word, text=current_card["English"], fill="white")
     canvas.itemconfig(pinyin_word_label, text="")
+
+def is_know():
+    to_learn.remove(current_card)
+    data = pandas.DataFrame(to_learn)
+    data.to_csv("data/words_to_learn.csv", index=False)
+    next_card()
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Flashly")
@@ -62,7 +70,7 @@ unknown_button = Button(image=cross_image, highlightthickness=0, command=next_ca
 unknown_button.grid(column=0, row=1)
 
 check_image = PhotoImage(file="images/right.png")
-known_button = Button(image=check_image, highlightthickness=0, command=next_card)
+known_button = Button(image=check_image, highlightthickness=0, command=is_know)
 known_button.grid(column=1, row=1)
 
 next_card()
