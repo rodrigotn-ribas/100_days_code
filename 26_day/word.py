@@ -6,7 +6,7 @@ print(weather_f)
 
 
 
-# list_comprehension = [new_list for item in list if test]
+# list_comprehension = [stock_list for item in list if test]
 # dict_comprehention = {new_key:new_value for (key,value) in dict.items() if test}
 # df_comprehention = {new_key:new_value for (index, row) in df.iterows()}
 

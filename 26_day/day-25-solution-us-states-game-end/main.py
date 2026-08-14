@@ -14,7 +14,7 @@ guessed_states = []
 while len(guessed_states) < 50:
     answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States Correct",
                                     prompt="What's another state's name?").title()
-    # TODO: list comprehension; new_list = [new_list for item in list if test]
+    # TODO: list comprehension; stock_list = [stock_list for item in list if test]
 
 
     if answer_state == "Exit":
