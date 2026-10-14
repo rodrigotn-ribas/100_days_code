@@ -5,7 +5,7 @@ import datetime as dt
 
 # load env
 load_dotenv()
-PIXELA_ENDPOINT = "https://pixe.la/v1/users"
+PIXELA_ENDPOINT = "https://pixe.la/v1/users" 
 USERNAME = "rodrigoribas"
 TOKEN = os.getenv("TOKEN")
 GRAPH_ID = os.getenv("GRAPH_ID")
@@ -70,4 +70,3 @@ def pixel_delete():
     response = requests.delete(url=delete_endpoint, headers=headers)
     print(response.text)
 
-pixel_delete()

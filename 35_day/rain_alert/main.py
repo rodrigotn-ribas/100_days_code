@@ -7,8 +7,8 @@ load_dotenv()
 
 OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast"
 API_KEY = os.getenv("WEATHER_API_KEY")
-ACCOUNT_SID = os.getenv("ACCOUNT_SID")
-AUTH_TOKEN = os.getenv("Twilio_AUTH_TOKEN")
+ACCOUNT_SID = os.getenv("TWILIO_SID")
+AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 # "lat" : -22.91,
 # "lon" : -43.21,
 
