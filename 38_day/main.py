@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 import datetime as dt
+from requests.auth import HTTPBasicAuth
 
 load_dotenv()
 
@@ -13,6 +14,9 @@ APP_KEY = os.getenv("x-app-key")
 # Sheety API
 # LINK = "https://api.sheety.co/{username}/{projectName}/{sheetName}"
 SHEETY_ENDPOIT = os.getenv("SHEETY_ENDPOIT")
+USER = os.getenv("USERNAME_SHEETY")
+PASS = os.getenv("PASSWORD_SHEETY")
+BASIC = HTTPBasicAuth(USER,PASS) # Autorization
 
 GENDER = "male"
 WEIGHT = int(os.getenv("WEIGHT"))
@@ -43,7 +47,7 @@ def nutrition_post():
 
 def sheety_get():
   # Filter: ?filter[property]=value; double filter: ?filter[familyFriendly]=true&filter[country]=UK
-  response = requests.get(url=f"{SHEETY_ENDPOIT}")  
+  response = requests.get(url=f"{SHEETY_ENDPOIT}", auth=BASIC)  
   json = response.json()
   print(json)
 
@@ -60,29 +64,8 @@ def sheety_post(nutri_params):
   }
   print(params)
 
-  return requests.post(url=SHEETY_ENDPOIT, json=params)  
+  return requests.post(url=SHEETY_ENDPOIT, json=params, auth=BASIC)  
 
 paramters = nutrition_post()
 
 print(sheety_post(nutri_params=paramters))
-
-
-
-"""
-{'exercises': [{
-    'tag_id': 50,
-    'user_input': 'i ran 4km', 
-    'duration_min': 30, 
-    'met': 9.8, 
-    'nf_calories': 340, 
-    'photo': {
-      'highres': 'https://placeholder.not-a-real-url.com/exercise/50_highres.jpg', 
-      'thumb': 'https://placeholder.not-a-real-url.com/exercise/50_thumb.jpg', 
-      'is_user_uploaded': False},
-    'compendium_code': 12050, 
-    'name': 'running', 
-    'description': None, 
-    'benefits': None
-    }
-  ]
-}"""
